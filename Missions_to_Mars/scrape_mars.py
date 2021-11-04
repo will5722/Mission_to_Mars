@@ -95,9 +95,7 @@ def scrape():
     
     return mars_data_dict
 
-    if __name__ == "__main__":
-        print(scrape())
-        
+   
 
 
 
