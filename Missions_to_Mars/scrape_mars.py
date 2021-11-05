@@ -12,13 +12,11 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 
 
-
-executable_path = {'executable_path': ChromeDriverManager().install()}
-browser = Browser('chrome', **executable_path, headless=False)
-
-
-
 def scrape():
+    
+    executable_path = {'executable_path': ChromeDriverManager().install()}
+    browser = Browser('chrome', **executable_path, headless=False)
+
 
     news_url = 'https://redplanetscience.com/'
     browser.visit(news_url)
@@ -56,8 +54,8 @@ def scrape():
     table = facts_df[0]
     table = table.rename(columns={0: "Mars - Earth Comparison", 1: "Mars", 2: "Earth"})
     table = table.drop(index=0)
-
-    table_html = table.to_html("facts_table")
+    table_html = table.to_html()
+    
     table_html
 
 
@@ -80,7 +78,7 @@ def scrape():
         hemisphere_html = browser.html
         soup = soup = bs(hemisphere_html, 'html.parser')
         hemisphere_img_url = soup.find("img", class_="wide-image").get("src")
-        hemi_img_urls.append({"title": title, "img_url": f"https://marshemispheres.com/{hemisphere_img_url}"})
+        hemi_img_urls.append({"title": title, "img_url":     f"https://marshemispheres.com/{hemisphere_img_url}"})
 
 
 
