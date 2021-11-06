@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect
-#from pymongo import MongoClient
+from pymongo import MongoClient
 import scrape_mars
 import pymongo
 
@@ -14,15 +14,11 @@ mars_info = client.mars_db.mars_info
 #collection = db.mars_data
 
 
-
-
-
-
-
 # Route to render index.html template using data from Mongo
 @app.route("/")
 def home():
     mars_data = mars_info.find_one()
+    print(mars_data)
     return render_template("index.html", mars_data=mars_data)
     
     
@@ -33,9 +29,6 @@ def scrape():
     mars_info.insert_one(item)
     
     return redirect("/")
-    
-    
-    
     
     
 if __name__ == "__main__":

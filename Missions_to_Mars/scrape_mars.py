@@ -50,13 +50,12 @@ def scrape():
     facts_url = "https://galaxyfacts-mars.com/"
     browser.visit(facts_url)
     facts_df = pd.read_html(facts_url)
-    #facts_df
+    
     table = facts_df[0]
     table = table.rename(columns={0: "Mars - Earth Comparison", 1: "Mars", 2: "Earth"})
     table = table.drop(index=0)
     table_html = table.to_html()
-    
-    table_html
+    print(table_html)
 
 
 
@@ -78,10 +77,10 @@ def scrape():
         hemisphere_html = browser.html
         soup = soup = bs(hemisphere_html, 'html.parser')
         hemisphere_img_url = soup.find("img", class_="wide-image").get("src")
-        hemi_img_urls.append({"title": title, "img_url":     f"https://marshemispheres.com/{hemisphere_img_url}"})
+        hemi_img_urls.append({"title": title, "img_url": f"https://marshemispheres.com/{hemisphere_img_url}"})
 
 
-
+    print(table_html)
     mars_data_dict = {
         "mars_news": {"news_title": news_title, "news_text": news_text},
         "mars_featured_img": featured_image_url,
