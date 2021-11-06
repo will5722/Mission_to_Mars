@@ -18,7 +18,7 @@ mars_info = client.mars_db.mars_info
 @app.route("/")
 def home():
     mars_data = mars_info.find_one()
-    print(mars_data)
+    #print(mars_data)
     return render_template("index.html", mars_data=mars_data)
     
     
